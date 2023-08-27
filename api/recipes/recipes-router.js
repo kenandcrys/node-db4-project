@@ -2,11 +2,11 @@ const express = require('express')
 
 const md = require('./recipes-middleware');
 
-const db = require('../../data/db-config');
+const db = require('../../data/db.config');
 
 const Recipes = require('./recipes-model');
 
-const router = ('express').Router();
+const router = express.Router();
 
 
 

@@ -1,33 +1,32 @@
 module.exports = {
-    development: {
-      client: 'sqlite3', // or your database client (e.g., postgres, mysql)
-      connection: {
-        filename: './dev.sqlite3', // Path to your database file
-      },
-      migrations: {
-        directory: './data/migrations', // Directory where migration files are stored
-      },
-      seeds: {
-        directory: './data/seeds', // Directory where seed files are stored
+  development: {
+    client: "sqlite3",
+    connection: {
+      filename: "./data/recipes.db3",
+    },
+    migrations: {
+      directory: "./data/migrations",
+    },
+    seeds: {
+      directory: "./data/seeds",
+    },
+  },
+
+  production: {
+    client: "postgresql",
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false,
       },
     },
-  
-    production: {
-      client: 'postgresql', // or your production database client
-      connection: {
-        connectionString: process.env.DATABASE_URL, // Connection URL or other config
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
-      migrations: {
-        directory: './db/migrations',
-      },
-      seeds: {
-        directory: './db/seeds',
-      },
+    migrations: {
+      directory: "./data/migrations",
     },
-  
-    // You can add more environment configurations (e.g., testing) here
-  };
-  
+    seeds: {
+      directory: "./data/seeds",
+    },
+  },
+
+  // You can add more environment configurations (e.g., testing) here
+};
