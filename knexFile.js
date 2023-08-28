@@ -10,6 +10,7 @@ module.exports = {
     seeds: {
       directory: "./data/seeds",
     },
+    useNullAsDefault: true,
   },
 
   production: {
@@ -26,7 +27,7 @@ module.exports = {
     seeds: {
       directory: "./data/seeds",
     },
+    useNullAsDefault: true,
   },
 
-  // You can add more environment configurations (e.g., testing) here
 };
