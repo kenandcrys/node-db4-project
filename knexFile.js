@@ -1,5 +1,4 @@
 // no need to change this file
-const path = require('path');
 
 const sharedConfig = {
   client: 'sqlite3',
