@@ -1,12 +1,12 @@
 const express = require('express');
 
 const recipesRouter = require('./recipes/recipes-router')
-
+const userRouter = require('./users/users-router')
 const server = express();
 
 server.use(express.json());
 server.use('/api/recipes', recipesRouter);
-
+server.use('/api/users', userRouter)
 
 server.get("*", (_req, res, next) => {
     try {
