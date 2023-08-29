@@ -1,33 +1,27 @@
+// no need to change this file
+const sharedConfig = {
+  client: 'sqlite3',
+  useNullAsDefault: true,
+  migrations: {
+    directory: './data/migrations',
+  },
+  seeds: {
+    directory: './data/seeds',
+  },
+  pool: {
+    afterCreate: (conn, done) => {
+      conn.run('PRAGMA foreign_keys = ON', done)
+    },
+  },
+}
+
 module.exports = {
   development: {
-    client: "sqlite3",
-    connection: {
-      filename: "./data/recipes.db3",
-    },
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
-    useNullAsDefault: true,
+    ...sharedConfig,
+    connection: { filename: './data/dealer.db3' },
   },
-
-  production: {
-    client: "postgresql",
-    connection: {
-      connectionString: process.env.DATABASE_URL,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
-    migrations: {
-      directory: "./data/migrations",
-    },
-    seeds: {
-      directory: "./data/seeds",
-    },
-    useNullAsDefault: true,
+  testing: {
+    ...sharedConfig,
+    connection: { filename: './data/testing.db3' },
   },
-
-};
+}

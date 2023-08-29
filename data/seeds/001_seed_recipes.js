@@ -1,5 +1,4 @@
 const recipeData = {
-  recipe_id: 1,
   recipe_name: 'Spaghetti Bolognese',
   created_at: new Date(),
   steps: [
@@ -21,23 +20,25 @@ const recipeData = {
 };
 
 exports.seed = async function (knex) {
-  await knex('recipes').insert({
-    recipe_id: recipeData.recipe_id,
+  
+  const [recipeId] = await knex('recipes').insert({
     recipe_name: recipeData.recipe_name,
     created_at: recipeData.created_at,
   });
 
   for (const step of recipeData.steps) {
-    await knex('steps').insert({
+    
+    const [stepId] = await knex('steps').insert({
       step_id: step.step_id,
-      recipe_id: recipeData.recipe_id,
+      recipe_id: recipeId,
       step_number: step.step_number,
       step_instructions: step.step_instructions,
     });
 
     for (const ingredient of step.ingredients) {
+      
       await knex('step_ingredients').insert({
-        step_id: step.step_id,
+        step_id: stepId,
         ingredient_id: ingredient.ingredient_id,
         quantity: ingredient.quantity,
       });
